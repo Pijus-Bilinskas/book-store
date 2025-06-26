@@ -4,12 +4,13 @@ import { getBooksByCategory } from "@/lib/books"
 
 
 
-export default async function CategoryPage ({ params }: {params: {id: string}}) {
-        const books = await getBooksByCategory({ category: params.id })
+export default async function CategoryPage ({params}: {params: Promise<{id: string}>}) {
+        const { id } = await params;
+        const books = await getBooksByCategory({ category: id })
 
     return(
         <div>
-           <Category books={books} category={params.id}/>
+           <Category books={books} category={id}/>
         </div>
     )
 }
