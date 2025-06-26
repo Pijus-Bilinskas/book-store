@@ -13,7 +13,7 @@ export async function getBook({ id }: {id: string}) {
             return response
         } catch (error) {
             console.error("Error in fetching book", error)
-            return []
+            return null
         }
 }
 
@@ -29,7 +29,7 @@ export async function getBooksByCategory({ category }: {category: string}) {
         return response.documents
     } catch (error) {
         console.error("Error fetching books by category", error)
-        return []
+        return null
     }
 }
 
@@ -56,6 +56,6 @@ export async function getBooks() {
        return books;
     } catch(error) {
         console.error("Error fetching books", error);
-        return [];
+        return null;
     }
 }
