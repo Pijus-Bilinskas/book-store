@@ -1,7 +1,8 @@
 
 import Carousel from './Carousel';
 
-const HomePage = ({books}) => {
+
+const HomePage = ({books} ) => {
 
     
   return (
