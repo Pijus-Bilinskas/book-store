@@ -3,8 +3,8 @@ import { getBook } from "@/lib/books"
 
 
 
-
 export default async function BookPage ({ params }: {params: {id: string}}) {
+    // const { id } =  params
     const book = await getBook({ id: params.id })
 
     return(
@@ -12,4 +12,4 @@ export default async function BookPage ({ params }: {params: {id: string}}) {
             <Book book={book} />
         </div>
     )
-}  
+}    
