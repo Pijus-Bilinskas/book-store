@@ -15,7 +15,6 @@ export default async function Home() {
     price: doc.price,
     category: doc.category,
     stock: doc.stock,
-    // add any other fields your BookType requires
   }));
 
   return (
