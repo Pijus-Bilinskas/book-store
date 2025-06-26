@@ -26,7 +26,7 @@ const Books = () => {
 
     useEffect(() => {
         const run = async () => {
-            let queries = [];
+            const queries = [];
 
             if(debouncedSearch) queries.push(Query.search("title", debouncedSearch));
 
