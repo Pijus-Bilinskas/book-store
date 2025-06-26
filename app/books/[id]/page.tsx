@@ -9,7 +9,7 @@ interface BookPageProps {
 
 
 export default async function BookPage ({ params }: BookPageProps) {
-    const { id } = await params
+    const { id } =  params
     const book = await getBook({ id })
 
     return(
@@ -17,4 +17,4 @@ export default async function BookPage ({ params }: BookPageProps) {
             <Book book={book} />
         </div>
     )
-} 
+}     
