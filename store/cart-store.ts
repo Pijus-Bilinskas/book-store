@@ -9,7 +9,7 @@ interface CartItem {
 }
 
 interface CartStore {
-    items: CartItem;
+    items: CartItem[];
     addItem: (item: CartItem) => void;
     removeItem: (id: string) => void;
     clearCart: () => void; 
