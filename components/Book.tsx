@@ -1,11 +1,15 @@
 "use client"
 
+import { BookType } from '@/constants/types'
 import { useCartStore } from '@/store/cart-store'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 
-const Book = ({ book }) => {
+
+
+
+const Book = ({ book }: {book: BookType}) => {
   const { items, addItem, removeItem} = useCartStore();
   const cartItem = items.find((item) => item.id === book.$id)
   const quantity = cartItem ? cartItem.quantity : 0;
