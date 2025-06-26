@@ -1,8 +1,9 @@
 
+import { BookType } from '@/constants/types';
 import Carousel from './Carousel';
 
 
-const HomePage = ({books} ) => {
+const HomePage = ({books}: {books: BookType[]} ) => {
 
     
   return (

@@ -2,8 +2,9 @@ import React from 'react'
 import { Card, CardContent, CardTitle } from './ui/card'
 import Image from 'next/image'
 import Link from 'next/link'
+import { BookType } from '@/constants/types'
 
-const Category = ({ books, category }) => {
+const Category = ({ books, category }: {books: BookType[], category: string}) => {
 
   return (
     <div className='flex flex-col gap-5 py-6 px-4'>

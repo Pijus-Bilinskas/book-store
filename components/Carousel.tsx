@@ -4,10 +4,11 @@ import { useEffect, useState } from "react";
 import { Card, CardContent, CardTitle } from "./ui/card";
 import Image from "next/image";
 import Link from "next/link";
+import { BookType } from "@/constants/types";
 
 
 
-const Carousel = ({ books }) => {
+const Carousel = ({ books }: {books: BookType[]}) => {
   const [current, setCurrent] = useState<number>(0);
 
     useEffect(() => {
@@ -32,7 +33,7 @@ const Carousel = ({ books }) => {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       {visibleBooks.map((book, idx) => (
         <Link href={`/books/${book.$id}`} key={idx}>
-        <Card key={book.id || idx} className="relative rounded-lg shadow-md overflow-hidden hover:scale-101 hover:shadow-lg duration-200">
+        <Card key={book.$id || idx} className="relative rounded-lg shadow-md overflow-hidden hover:scale-101 hover:shadow-lg duration-200">
           <div className="relative w-full h-88">
             {/* Cannot display actual images for each one due to not having the correct plan on Appwrite */}
             <Image

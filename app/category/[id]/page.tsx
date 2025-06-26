@@ -1,4 +1,5 @@
 import Category from "@/components/Category"
+import { BookType } from "@/constants/types";
 import { getBooksByCategory } from "@/lib/books"
 
 
@@ -15,10 +16,18 @@ export default async function CategoryPage ({params}: {params: Promise<{id: stri
       </div>
     );
      }
+    //  Maping Document[] to BookType[]
+     const typedBooks: BookType[] = books.map((doc) => ({
+        $id: doc.$id,
+        title: doc.title,
+        price: doc.price,
+        category: doc.category,
+        stock: doc.stock,
+        }));
 
     return(
         <div>
-           <Category books={books} category={id}/>
+           <Category books={typedBooks} category={id}/>
         </div>
     )
 }

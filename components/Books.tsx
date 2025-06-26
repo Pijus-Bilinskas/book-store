@@ -7,13 +7,14 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 import { Card, CardContent, CardTitle } from './ui/card';
 import Image from 'next/image';
+import { BookType } from '@/constants/types';
 
 const Books = () => {
     const [search, setSearch] = useState("");
     const [debouncedSearch, setDebouncedSearch] = useState("");
     const [stock, setStock] = useState("")
     const [category, setCategory] = useState("")
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState<BookType[]>([]);
 
     useEffect(() => {
         const handler = setTimeout(() => {
@@ -38,7 +39,16 @@ const Books = () => {
 
             try{
              const data = await fetchProducts(queries)
-             setProducts(data)   
+
+              const books: BookType[] = data.map(doc => ({
+              $id: doc.$id,
+              title: doc.title,
+              price: doc.price,
+              category: doc.category,
+              stock: doc.stock,
+              }));
+
+             setProducts(books)   
             } catch (error) {
                 console.error("Failed to fetch products according to queries", error)
             }
@@ -72,7 +82,7 @@ const Books = () => {
             </select>
         </div>
         <div className='flex items-center justify-center flex-wrap px-6 py-2 gap-4 overflow-hidden'>
-            {products.map((product, index) => (
+            {products.map((product: BookType, index) => (
                 <Link
   className="basis-[100%] md:basis-1/3 xl:basis-1/4 h-full"
   href={`/books/${product.$id}`}
