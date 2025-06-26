@@ -1,8 +1,14 @@
 import Book from "@/components/Book"
 import { getBook } from "@/lib/books"
 
+interface BookPageProps {
+    params: {
+        id: string
+    }
+}
 
-export default async function BookPage ({ params }: { params: string }) {
+
+export default async function BookPage ({ params }: BookPageProps) {
     const { id } = await params
     const book = await getBook({ id })
 
@@ -11,4 +17,4 @@ export default async function BookPage ({ params }: { params: string }) {
             <Book book={book} />
         </div>
     )
-}
+} 
