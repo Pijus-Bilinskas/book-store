@@ -4,6 +4,7 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
 import categories from '@/constants/categories';
 import { useCartStore } from '@/store/cart-store';
+import Auth from './Auth';
 
 const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState<boolean>(false);
@@ -44,6 +45,7 @@ const Navbar = () => {
           </div>
         </div>
         <div className='flex items-center space-x-4'>
+            <Auth/>
             <Link href={"/cart"} className='relative'>
             🛒
             {cartCount > 0 && (

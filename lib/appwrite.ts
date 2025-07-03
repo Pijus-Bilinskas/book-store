@@ -1,12 +1,13 @@
-import { Client, Databases, Storage } from "appwrite";
+import { Client, Databases, Storage, Account } from "appwrite";
 
 const client = new Client();
 client
-    .setEndpoint('https://fra.cloud.appwrite.io/v1')
-    .setProject('682c80a000041d068fb1')
+    .setEndpoint(process.env.NEXT_PUBLIC_APPWRITE_ENDPOINT!)
+    .setProject(process.env.NEXT_PUBLIC_APPWRITE_PROJECT_ID!)
 
 const databases = new Databases(client);
 const storage = new Storage(client);
+const account = new Account(client)
 
 export const fetchProducts = async (queries: string[]) => {
     const response = await databases.listDocuments(
@@ -19,4 +20,4 @@ export const fetchProducts = async (queries: string[]) => {
 
 
 
-export { databases, storage }
+export { databases, storage, account }

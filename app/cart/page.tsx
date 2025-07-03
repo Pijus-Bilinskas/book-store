@@ -2,11 +2,13 @@
 
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { useCartStore } from "@/store/cart-store";
+import { useAuthStore } from "@/store/useAuthStore";
 
 
 
 export default function CartPage() {
     const { items, addItem, removeItem } = useCartStore();
+    const {user, openLogin} = useAuthStore();
     const total = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
     if(total === 0 || items.length === 0){
@@ -14,6 +16,14 @@ export default function CartPage() {
             <h1>Your Cart is Empty</h1>
         </div>)
     }
+
+    const handlePayment =  () => {
+        if(!user){
+            openLogin();
+            return
+        }
+alert(`payment for ${items.map(item => `${item.title} ${item.quantity}`).join(", ")}`); 
+}
 
     return(
         <div className="container mx-auto px-4 py-6">
@@ -42,7 +52,7 @@ export default function CartPage() {
                     </div>
                 </CardContent>
             </Card>
-            <button onClick={() => alert(`payment for ${items}`)} className="flex mx-auto text-white text-lg font-semibold px-3 py-1 rounded bg-green-500 hover:bg-green-600 hover:cursor-pointer">Proceed to Payment</button>
+            <button onClick={handlePayment} className="flex mx-auto text-white text-lg font-semibold px-3 py-1 rounded bg-green-500 hover:bg-green-600 hover:cursor-pointer">Proceed to Payment</button>
         </div>
     )
 }
